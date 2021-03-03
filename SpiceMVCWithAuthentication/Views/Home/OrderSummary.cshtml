@@ -1,0 +1,336 @@
+﻿@model IEnumerable<Spicee.DomainModels.ShoppingCart>
+@{
+    ViewBag.Title = "OrderSummary";
+}
+<h2>OrderSummary</h2>
+
+
+<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-left">
+                <li style="color:wheat">
+                    <i class="fa fa-shopping-cart" style="color:white"></i>
+                    OrderSummary
+
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li> @Html.ActionLink("BacktoCart", "Cart", new { Controller = "Home" }, new { @class = "btn btn-block" })</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .column {
+        flex: 50%;
+        padding: 5px;
+    }
+
+    input[type=text], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=date], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    input[type=time], select {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+</style>
+
+
+
+
+
+
+
+@*<body style="background-color:bisque">
+    </body>*@
+
+
+
+<aside class="order-summary bg-contrast-lower radius-md ">
+
+
+    @*<a class="text-sm" href="@Url.Action("Cart", "Home")" style="padding-left: 520px;
+        font-family: cursive; font-size:larger;">Edit <i class="sr-only">cart</i></a>*@
+
+    @*<div> @Html.ActionLink("Edit", "Cart", "Home", new { @class = "btn btn-primary" })</div>*@
+
+    @*<button id="myBtn" class="btn btn-info" style="margin-left:400px">Edit</button>*@
+    <div class="container img-rounded p-2">
+        <div class="row">
+
+            <div class="col-lg-6 pb-4">
+                <div class="row">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-info" style="font-weight:bolder">PickUp Details</span>
+                    </h4>
+                </div>
+
+                <div>
+                    <form action="/action_page.php">
+                        <label for="fname" style="color:crimson">Name</label>
+                        <input type="text" id="fname" name="firstname" placeholder="Pavani">
+                        <br />
+                        <label for="lphoneno">Phone</label>
+                        <input type="text" id="lphoneno" name="phonenumber" placeholder="9876578968">
+                        <br />
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                        <br />
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time" placeholder="">
+                        <br />
+                        @*<label for="textarea">Additional Instructions</label>
+                            <textarea></textarea>*@
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="right:16px;top:8px" style="width:380px;float:right;margin-top:-247px">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+            <span class="text-info">OrderSummary</span>
+        </h4>
+
+
+        <table class="table table-bordered table-striped" style="align-content:flex-end">
+            <tr>
+                <th>MenuItem</th>
+                <th>Total</th>
+
+            </tr>
+            @{ double bag = 0; }
+
+            @foreach (var i in Model)
+            {
+                double Total = 0;
+
+
+                Total = (Total + @i.MenuItem.Price) * @i.Count;
+                <tr>
+
+                    <td>
+                        <strong>@Html.DisplayFor(m => i.MenuItem.Name)</strong>
+                        <br />
+
+
+
+                        <p style="color:red">@Html.DisplayFor(m => i.MenuItem.Price) x @Html.DisplayFor(m => i.Count)</p>
+                    </td>
+                    <td>
+                        <p style="color:orangered">@Total.ToString("c")</p>
+                    </td>
+                </tr>
+                bag = bag + Total;
+            }
+
+
+        </table>
+    </div>
+    @{ double Final = 0.0;
+        Final = 100 + bag; }
+    <br />
+    <br />
+    <div>
+        <ul class="text-sm flex flex-column gap-xxs">
+            <li style="font-weight:bold" class="flex justify-between"><i>Subtotal</i> <i>@bag.ToString("c")</i></li>
+            <li class="flex justify-between"><i>Tax</i> <i>$100.00</i></li>
+            <li class="flex justify-between"><i>Delivery</i> <i>Free</i></li>
+            <li class="flex justify-between font-bold"><i>Total</i>@Final.ToString("c") <i></i></li>
+        </ul>
+    </div>
+
+</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Trigger/Open The Modal -->
+<button id="myBtn" class="btn btn-info" style="margin-left:538px">Payment</button>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-content" style="padding-left:20px;">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+                <h2 style="margin-left:350px">Transaction Details</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="cname"><i class="fa fa-user"></i> Name</label>
+                    <input type="text" id="cname" name="cardname" placeholder="Name On the Card" class="form-control"><br />
+                </div>
+                <div class="col-md-3">
+                    <label for="ccnum"><i class="fa fa-credit-card"></i> card number</label>
+                    <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" class="form-control"><br />
+                </div>
+                <div class="col-md-3">
+                    <label for="expmonth">Exp Month</label>
+                    <input type="text" id="expmonth" name="expmonth" placeholder="September" class="form-control"><br />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="expyear">Exp Year</label>
+                    <input type="text" id="expyear" name="expyear" placeholder="2018" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" name="cvv" placeholder="352" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <i class="fa fa-cc-visa" style="color:navy;"></i>
+                    <i class="fa fa-cc-amex" style="color:blue;"></i>
+                    <i class="fa fa-cc-mastercard" style="color:red;"></i>
+                    <i class="fa fa-cc-discover" style="color:orange;"></i>
+                </div>
+            </div>
+            <br />
+            <div class="modal-footer">
+                <div style="margin-right:500px">Grand Total : @String.Format("{0:C}", Final)</div>
+                <a href="/Home/CartRemoves?uName=@ViewBag.uId" type="button" class="btn btn-success" style="margin-right:580px">PAY</a>
+
+            </div>
+        </div>
+    </div>
+    <script>
+    // Get the modal
+        var modal = document.getElementById("myModal");
+
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks the button, open the modal
+        btn.onclick = function () {
+            modal.style.display = "block";
+        }
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }</script>
+
+</div>

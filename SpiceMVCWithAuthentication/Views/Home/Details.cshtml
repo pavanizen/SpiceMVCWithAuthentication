@@ -1,0 +1,178 @@
+﻿
+@model Spicee.DomainModels.MenuItem
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of a Single Item</h2>
+
+<br/>
+
+
+
+@*<body style="background-color:bisque">
+</body>*@
+
+@using(Html.BeginForm ("AddtoCart","Home",new { a = Model.Id }))
+{
+    <div class="border backgroundWhite row">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <!--if the screen is too small put the image on top else at the bottom of this file you see we put it on the side-->
+        @*<div class="col-12 pb-4 d-md-none">
+            <img src="@Model.Image" width="100%" style="border-radius:5px;border:1px solid #bbb9b9;" />
+        </div>*@
+
+        <div class="col-md-8">
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="@Model.Name" class="text-info font-weight-bold">Name</label>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="ApplicationUserId" hidden value="@ViewBag.user"/>
+                    <input asp-for="@Model.Id" hidden value="@Model.Id" name="MenuItemId"/>
+
+                    <input asp-for="@Model.Name" readonly class="form-control" value="@Model.Name" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                   
+                    <label asp-for="@Model.Description" class="text-info font-weight-bold">Description</label>
+                </div>
+                <div class="col-md-8">
+                    <div style="color:blue" class="border rounded p-2">
+                        
+                        @Html.Raw(@Model.Description)
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="@Model.Price.ToString("c")" class="text-info font-weight-bold">Price</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="@Model.Price" readonly class="form-control" value="@Model.Price" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="@Model.CategoryId" class="text-info font-weight-bold">Category</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="@Model.Category.Name" readonly class="form-control" value="@Model.Category.Name" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="@Model.SubCategoryId" class="text-info font-weight-bold">SubCategory</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="@Model.SubCategory.Name" readonly class="form-control" value="@Model.SubCategory.Name" />
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="@Model.Spicyness" class="text-info font-weight-bold">Spicyness</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="@Model.Spicyness" readonly class="form-control" value="@Model.Spicyness">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                    <label asp-for="Count" class="text-info font-weight-bold">Count</label>
+                </div>
+                <div class="col-md-8">
+                    <input asp-for="Count" class="form-control" name="Count" value="1"/>
+                    <span asp-validation-for="Count" class="text-danger" ></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                    @*<a asp-action="Menu" class="btn btn-success form-control">Back to List</a>*@
+                    @Html.ActionLink("Back to List", "Menu", "Home", new { @class = "btn btn-primary" })
+                </div>
+                <div class="col-md-4">
+                    <button type="submit" value="Add to Cart" class="btn btn-danger form-control">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 offset-1 d-none d-md-block">
+            <img src="@Url.Content(Model.Image)" style="width:100%";border-radius:5px;border:1px solid #bbb9b9;" />
+        </div>
+    </div>
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<table class="table">
+
+    <tr>-->
+        @*<th>Images</th>*@
+        <!--<td>
+            <img src="@Url.Content(@Model.Image)" style="width:300px; height:auto;border-radius:50px" />
+
+
+        </td>
+    </tr>
+
+
+
+    <tr>
+        <th>Menu ID</th>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <th>Menu Name</th>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <th>Descriptionn</th>
+        <td>@Model.Description</td>
+    </tr>
+    <tr>
+       
+            <th>Spicyness</th>
+
+            <td>@Model.Spicyness</td>
+        
+    </tr>
+    <tr>
+        <th>Price</th>
+        <th>@Model.Price</th>
+    </tr>-->
+    @*<tr>
+            <th>Images</th>
+            <th>@Model.Image</th>
+        </tr>*@
+
+    <!--<tr>
+        <th>Category Id</th>
+        <th>@Model.CategoryId</th>
+    </tr>
+</table>
+
+@Html.ActionLink("Back", "Menu", "Home", new { @class = "btn btn-primary" })
+@Html.ActionLink("AddtoCart","Menu","Home",new { @class = "btn btn-danger" })-->
+
+

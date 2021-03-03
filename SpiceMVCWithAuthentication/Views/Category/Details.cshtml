@@ -1,0 +1,19 @@
+﻿@model Spicee.DomainModels.Category
+@{ ViewBag.Title = "Details"; }
+
+<br />
+<h2 class="text-info">Category Details</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>Category Id</th>
+        <th>@Model.Id</th>
+    </tr>
+    <tr>
+        <th>Category Name</th>
+        <th>@Model.Name</th>
+    </tr>
+
+</table>
+
+<a class="btn btn-dark" href="/Category/Index">Back</a>

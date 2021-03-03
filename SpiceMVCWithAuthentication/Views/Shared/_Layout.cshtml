@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/font-awesome.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/fontawesome-all.css" rel="stylesheet" type="text/css" />
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand">
+                    <i style="color: red;" class="fas fa-pepper-hot"></i>
+                    <i style="color: Orange;" class="fas fa-pepper-hot"></i>
+                    <i style="color: Green;" class="fas fa-pepper-hot"></i>
+                </div>
+                @Html.ActionLink("Spice", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            @*<div class="navbar-brand">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                @Html.ActionLink("Cart", "Index", "Home")
+            </div>*@
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @*<li>@Html.ActionLink("Spice", "Index", "Home")</li>
+        <li> <a class="navbar-brand" asp-controller="Home" asp-action="Index"></a></li>*@
+                    @*<li>@Html.ActionLink("About", "About", "Home")</li>
+        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>*@
+                    <li>@Html.ActionLink("Menu", "Menu", "Home")</li>
+                    <li>@Html.ActionLink("OrderHistory", "OrderHistory", "Home")</li>
+                    @*<li>
+                        <a href="@Url.Action("Cart", "Home")">
+                            <span class="glyphicon glyphicon-shopping-cart"></span>
+                            Cart
+                        </a>
+
+                    </li>*@
+
+                @*<li style="color:white">
+                    @model IEnumerable<Spicee.DomainModels.ShoppingCart>
+                    @{ 
+                        var count = 0;
+
+
+                        foreach (var item in Model)
+                        {
+
+
+                            count = count + item.Count;
+
+
+                        }
+
+
+                    <a href="@Url.Action("Cart", "Home") " class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> &nbsp; (@count)
+                    </a>
+
+                        }
+                </li>*@
+                <li style="color: white">
+                    <a href="@Url.Action("Cart", "Home") " class="nav-link">
+                        <i class="fas fa-shopping-cart"></i> &nbsp; (0)
+                    </a>
+                </li>
+                    
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Spicy INN</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

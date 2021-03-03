@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Spicee.DomainModels.MenuItem>
+@{
+    ViewBag.Title = "GetMenuItemByCategory";
+}
+
+<h2>GetMenuItemByCategory</h2>
+
+<br/>
+<div class="text-center">
+    <a href="/Home/Menu" class="btn btn-primary">Show All</a>
+    <a href="/Home/GetMenuItemByCategory?name=Apetizer" class="btn btn-primary">Apetizer</a>
+    <a href="/Home/GetMenuItemByCategory?name=Main Course" class="btn btn-primary">MainCourse</a>
+    <a href="/Home/GetMenuItemByCategory?name=Desert" class="btn btn-primary">Dessert</a>
+    <a href="/Home/GetMenuItemByCategory?name=Beverages" class="btn btn-primary">Beverages</a>
+
+</div>
+<br />
+<br />
+<br />
+
+
+
+<div class="jumbotron">
+    <div class="container table-bordered" style="border-color:black;">
+
+
+        <table class="table">
+
+            <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Price</th>
+                @*<th>Department Name</th>*@
+            </tr>
+
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        <img src="@Url.Content(item.Image)" style="width:100px; height:100px" />
+
+
+                    </td>
+                    <td>
+                        <h4 style="color:darkblue">
+                            @Html.DisplayFor(m => item.Name)
+                        </h4>
+                    </td>
+
+
+
+                    <td style="text-align:center">
+                        @Html.DisplayFor(m => item.Description)
+                    </td>
+                    <td style="text-align:center">
+                        <h4 style="color:darkred">
+                            @Html.DisplayFor(m => item.Price)
+                        </h4>
+                    </td>
+                    <td>@Html.ActionLink("ShowDetails", "Details", "Home", new { id = item.Id }, new { @class = "btn btn-primary" })</td>
+
+                </tr>
+
+
+            }
+
+        </table>
+        </div>
+    </div>

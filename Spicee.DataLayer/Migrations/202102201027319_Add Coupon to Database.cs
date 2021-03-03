@@ -1,0 +1,31 @@
+namespace Spicee.DataLayer.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddCoupontoDatabase : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                "dbo.Coupons",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        CouponType = c.String(nullable: false),
+                        Discount = c.Double(nullable: false),
+                        MinimumAmount = c.Double(nullable: false),
+                        Picture = c.Binary(),
+                        IsActive = c.Boolean(nullable: false),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+        }
+        
+        public override void Down()
+        {
+            DropTable("dbo.Coupons");
+        }
+    }
+}
